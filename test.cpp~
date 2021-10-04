@@ -1,0 +1,41 @@
+#include <string.h>
+#include <iostream>
+#include <string>
+#include <cstring>
+#include <SDL/SDL.h>
+#include <SDL/SDL_gfxPrimitives.h>
+#include <cstdlib>
+#include <fstream>
+#include <stdio.h>
+#include <cmath>
+#include <SDL/SDL_ttf.h>
+#include <SDL/SDL_image.h>
+
+using namespace std ;
+
+int main ()
+{
+	string map2[32] , str ;
+	int n = 0 ;
+	int m = 148 ;
+	ifstream fin ( "Map.txt" ) ;
+		while ( fin.eof() == 0 )
+		{
+			getline ( fin , str ) ;
+			if ( m < 740 )  
+			{
+				if ( str != "" ) map2[n] = str ;
+				m += 37 ;
+				cout << n << " :  " << map2[n] << endl ;
+				n++ ;
+		 	}   
+		 	else  
+		 	{
+		 		if ( str != "" ) map2[n] = str ;
+		 		m += 37 ;
+		 		cout << n << " :  " << map2[n] << endl ;
+		 		n++ ;
+		 	}
+		}
+	fin.close () ;
+}

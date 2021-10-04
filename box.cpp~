@@ -1,0 +1,37 @@
+#include "SDL/SDL.h"
+#include "SDL/SDL_gfxPrimitives.h"
+
+const int WINDOW_WIDTH = 640;
+const int WINDOW_HEIGHT = 480;
+const int VIRTUAL_WIDTH = 1000;
+const int VIRTUAL_HEIGHT = 1000;
+
+int main(int argc, char **argv)
+{
+   SDL_Init( SDL_INIT_VIDEO );
+
+   SDL_Surface *screen = SDL_SetVideoMode( WINDOW_WIDTH, WINDOW_HEIGHT, 0, SDL_HWSURFACE | SDL_DOUBLEBUF );
+   SDL_Surface *virtualSurface = SDL_CreateRGBSurface(SDL_SWSURFACE, VIRTUAL_WIDTH, VIRTUAL_HEIGHT, 
+                              32, 0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff);    
+
+   // drawing a 160x80 box in the center of the virtual surface
+   boxRGBA(virtualSurface,
+       VIRTUAL_WIDTH/2-80, VIRTUAL_HEIGHT/2-40, VIRTUAL_WIDTH/2+80, VIRTUAL_HEIGHT/2+40, 
+       255, 0, 0, 255);
+
+   // Match middle of virtual surface to the middle of the screen
+   SDL_Rect offset;
+   offset.x = -(VIRTUAL_WIDTH - WINDOW_WIDTH)/2; 
+   offset.y = -(VIRTUAL_HEIGHT - WINDOW_HEIGHT)/2;
+
+   // Copy
+   SDL_BlitSurface(virtualSurface, NULL, screen, &offset );
+
+   // Draw
+   SDL_Flip(screen);
+   SDL_Delay(10000);
+
+   SDL_Quit();
+
+   return 0;
+}
