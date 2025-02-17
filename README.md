@@ -1,7 +1,5 @@
 # 📜 ClanBomber Game
 
-![ClanBomber Logo]([https://via.placeholder.com/800x400?text=ClanBomber+Game](https://www.nongnu.org/clanbomber/images/screenshots/screenshot_003.jpeg))
-
 **ClanBomber** is a classic multiplayer **Bomberman-style** game developed as a school project. The game uses **C++** and **SDL** for graphics and game mechanics.
 
 ## 🚀 Features
